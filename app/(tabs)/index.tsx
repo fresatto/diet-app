@@ -1,9 +1,29 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey:
+    "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",
+});
+
 export default function HomeScreen() {
+  const handleTakePhoto = async () => {
+    try {
+      const response = openai.responses.create({
+        model: "gpt-5-nano",
+        input: "write a haiku about ai",
+        store: true,
+      });
+
+      response.then((result) => console.log(result.output_text));
+    } catch (error) {
+      console.log("Falha ao tirar foto" + error);
+    }
+  };
   return (
-    <SafeAreaView className="flex-1 gap-8 p-6">
+    <SafeAreaView className="flex-1 gap-8 p-6 ">
       <View className="gap-2">
         <Text className="text-4xl font-bold text-center">
           Registrar refeição
@@ -14,18 +34,21 @@ export default function HomeScreen() {
       </View>
 
       <View className="h-[250px] w-full bg-white items-center justify-center rounded-lg border border-black border-dashed">
-        <View className="h-[120px] w-[120px] rounded-full bg-red-300" />
+        <View className="h-[120px] w-[120px] rounded-full bg-gray-100" />
       </View>
 
-      <View className="gap-2">
-        <TouchableOpacity className="bg-blue-500 h-[60px] rounded-lg items-center justify-center">
+      <View className="gap-3">
+        <TouchableOpacity
+          className="bg-blue-700 h-[60px] rounded-lg items-center justify-center"
+          onPress={handleTakePhoto}
+        >
           <Text className="text-white text-center text-xl font-bold">
             Tirar foto
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="bg-white h-[60px] rounded-lg items-center justify-center">
-          <Text className="text-black text-center text-xl font-bold">
+        <TouchableOpacity className="h-[60px] rounded-lg items-center justify-center border border-blue-700">
+          <Text className="text-blue-700 text-center text-xl font-bold">
             Escolher da galeria
           </Text>
         </TouchableOpacity>
