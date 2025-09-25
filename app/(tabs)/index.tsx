@@ -4,8 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey:
-    "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",
+  apiKey: "", // API Key
 });
 
 export default function HomeScreen() {
