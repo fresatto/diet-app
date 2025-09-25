@@ -1,22 +1,15 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: "", // API Key
-});
-
 export default function HomeScreen() {
   const handleTakePhoto = async () => {
     try {
-      const response = openai.responses.create({
-        model: "gpt-5-nano",
-        input: "write a haiku about ai",
-        store: true,
-      });
-
-      response.then((result) => console.log(result.output_text));
+      // const response = openai.responses.create({
+      //   model: "gpt-5-nano",
+      //   input: "write a haiku about ai",
+      //   store: true,
+      // });
+      // response.then((result) => console.log(result.output_text));
     } catch (error) {
       console.log("Falha ao tirar foto" + error);
     }
